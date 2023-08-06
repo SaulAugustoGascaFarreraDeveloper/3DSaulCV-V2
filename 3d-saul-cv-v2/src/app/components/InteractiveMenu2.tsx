@@ -12,13 +12,6 @@ import Image from 'next/image'
 
 import soundON from './images/sound-on.png'
 import soundOFF from './images/sound-off.png'
-//import hoverSound from "/sounds/hover.mp3"
-//import clickSound from "/sounds/click.mp3"
-//import transitionSound from '/sounds/transition.mp3'
-//bgMusic from '/sounds/music.mp3'
-
-
-
 
 
 
@@ -31,20 +24,28 @@ type Props = {}
 
 
 
-const menuItem = [
+interface menuItem {
+    
+        label: string,
+        content: JSX.Element
+         
+}
+
+
+const MenuItem: menuItem[] = [
     {
-        label: "Sobre mi",
+        label: "About Me",
         content: <About />
     },
     {
-        label: "Proyectos",
+        label: "My Work",
         content: <Work />
     },
     {
-        label: "Contactame",
+        label: "Get in Touch",
         content: <Contact />
     }
-]
+];
 
 const SpaceShip = () => {
 
@@ -114,7 +115,7 @@ const CustomMenu = (props: any) => {
 
 
                 {
-                    menuItem.map((item,key) => (
+                    MenuItem.map((item,key) => (
                         <>
                             <mesh>
                                 <Html key={key} scale={0.7} rotation={[Math.PI / 2, 0, 0]} position={[1.88, 0, (key + -2) * -0.5]} transform>
@@ -149,13 +150,14 @@ const CustomMenu = (props: any) => {
 
 export const InteractiveMenu2 = () => {
 
-    const [getCurrentMenuClicked, setCurrentMenuClicked] = useState(false);
+    //const [getCurrentMenuClicked, setCurrentMenuClicked] = useState(false);
+    const [getCurrentMenuClicked, setCurrentMenuClicked] = useState<menuItem | null>(null); // Cambio aquí
     const [isTimed, setTimed] = useState(false);
     const [isMusicOn, setIsMusicOn] = useState(false);
 
 
     const closePage = () => {
-        setCurrentMenuClicked(false)
+        setCurrentMenuClicked(null)
         setTimed(false)
         isMusic && transitionSoundEffect()
         window.scroll(0,0)
@@ -194,7 +196,7 @@ export const InteractiveMenu2 = () => {
 
         <div className={`mt-20 h-[65vh] md:mt-0 md:w-full md:h-full transition-opacity duration-500 opacity-0 ${!getCurrentMenuClicked && 'opacity-100'}`}>
                 <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 4], fov: 70 }}>
-                    <PerspectiveCamera makeDefault fov={70} position={[0, 0, 5]} focusDistance={[0, 0]} />
+                    <PerspectiveCamera makeDefault fov={70} position={[0, 0, 5]} up={[0,0,0]} />
                     <ambientLight color="#ff0a65" intensity={0.5} />
                     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} shadow-mapSize={[512, 512]} castShadow />
                     <PresentationControls
