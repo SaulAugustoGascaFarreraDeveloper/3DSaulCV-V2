@@ -88,6 +88,7 @@ const CustomMenu = (props: any) => {
             ref.current.rotation.y = Math.sin(t / 4) / 8
             ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
             ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
+            
         }
         
         
