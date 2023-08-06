@@ -78,16 +78,18 @@ const CustomMenu = (props: any) => {
 
     //const [isTime,setTime] = useState(false)
 
-    const ref = useRef()
-
-    
+    const ref = useRef<THREE.Group>()
 
     useFrame((state) =>{
         const t = state.clock.getElapsedTime()
-        ref.current.rotation.x = -Math.PI / 1.75 + Math.cos(t / 4) / 8
-        ref.current.rotation.y = Math.sin(t / 4) / 8
-        ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
-        ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
+        if(ref.current)
+        {
+            ref.current.rotation.x = -Math.PI / 1.75 + Math.cos(t / 4) / 8
+            ref.current.rotation.y = Math.sin(t / 4) / 8
+            ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
+            ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
+        }
+        
         
     })
 
@@ -112,7 +114,7 @@ const CustomMenu = (props: any) => {
                     menuItem.map((item,key) => (
                         <>
                             <mesh>
-                                <Html wrapperClass key={key} scale={0.7} rotation={[Math.PI / 2, 0, 0]} position={[1.88, 0, (key + -2) * -0.5]} transform>
+                                <Html key={key} scale={0.7} rotation={[Math.PI / 2, 0, 0]} position={[1.88, 0, (key + -2) * -0.5]} transform>
                                 <div className="group relative cursor-pointer flex items-center justify-center h-[22px] text-menuText font-black w-[97px] text-center text-sm hover:text-white"
                                 onClick={() => menuClicked(item)}
                                 onMouseEnter={() => isMusic && hoverSoundEffect()}
