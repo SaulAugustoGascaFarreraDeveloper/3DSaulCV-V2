@@ -14,7 +14,7 @@ import soundON from './images/sound-on.png'
 import soundOFF from './images/sound-off.png'
 
 
-
+const audioBG = new Audio("/sounds/music.mp3");
 let isMusic = false;
 let generalVolume = 1
 
@@ -166,7 +166,7 @@ export const InteractiveMenu2 = () => {
 
     const backGroundMusic = (e: any) => {
 
-        const audioBG = new Audio("/sounds/music.mp3");
+        
 
 
         if (!isMusic) {
@@ -234,8 +234,8 @@ export const InteractiveMenu2 = () => {
 
            
 
-<div className={`absolute block w-full bg-menu z-20 transition-all duration-500 ease-in ${getCurrentMenuClicked ? 'bottom-0 h-full' : 'h-0'}  ${isTimed && 'delay-[unset] top-0 h-0'}`}></div>
 
+{/* <div className={`absolute block w-full bg-menu z-20 transition-all duration-500 ease-in ${getCurrentMenuClicked ? 'bottom-0 h-full' : 'h-0'}  ${isTimed && 'delay-[unset] top-0 h-0'}`}></div> */}
 
                 
                 <Image id="musicTrigger" alt="sound icon" src={isMusicOn ? soundON : soundOFF} className="absolute opacity-80 w-[40px] h-[40px] z-10 bottom-10 right-[calc(50vw-20px)] md:bottom-[40px] cursor-pointer" onClick={(e) => backGroundMusic(e)} />
