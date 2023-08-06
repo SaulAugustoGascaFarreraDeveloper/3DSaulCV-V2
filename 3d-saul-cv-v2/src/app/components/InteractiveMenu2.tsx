@@ -14,7 +14,7 @@ import soundON from './images/sound-on.png'
 import soundOFF from './images/sound-off.png'
 
 
-const audioBG = new Audio("/sounds/music.mp3");
+let audioBG : HTMLAudioElement
 let isMusic = false;
 let generalVolume = 1
 
@@ -166,23 +166,25 @@ export const InteractiveMenu2 = () => {
 
     const backGroundMusic = (e: any) => {
 
+        // Verifica si la instancia de Audio ya existe, si no, crea una nueva.
+    if (!audioBG) {
+        audioBG = new Audio("/sounds/music.mp3");
+        audioBG.volume = generalVolume;
+        audioBG.loop = true;
+    }
+
+    // Verifica si la música está reproduciéndose o no y actúa en consecuencia.
+    if (!isMusic) {
+        audioBG.play();
+        setIsMusicOn(true);
+    } else {
+        audioBG.pause();
+        setIsMusicOn(false);
+    }
+    isMusic = !isMusic; // Cambia el estado de isMusic al valor opuesto.
         
 
-
-        if (!isMusic) {
-            audioBG.volume  = generalVolume;
-            audioBG.loop = true;
-            audioBG.play();
-            isMusic = true;
-            e.target.src = soundON;
-            setIsMusicOn(true)
-        }
-        else {
-            audioBG.pause();
-            isMusic = false;
-            e.target.src = soundOFF;
-            setIsMusicOn(false)
-        }
+        
     }
    
 
