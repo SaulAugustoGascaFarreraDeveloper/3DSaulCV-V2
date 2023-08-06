@@ -1,6 +1,3 @@
-import React from 'react'
-import { InteractiveMenu } from './InteractiveMenu'
-import { TestModel } from './TestModel'
 import { InteractiveMenu2 } from './InteractiveMenu2'
 
 type Props = {}
