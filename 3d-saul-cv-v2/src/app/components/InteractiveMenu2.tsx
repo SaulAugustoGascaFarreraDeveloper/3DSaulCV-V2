@@ -186,7 +186,28 @@ export const InteractiveMenu2 = () => {
 
         
     }
-   
+
+
+            // Referencia al componente OrbitControls
+        const orbitControlsRef = useRef<any>();
+
+        // Estado para controlar la rotación
+        const [isRotating, setRotating] = useState(false);
+
+        // Manejador del frame, actualiza los controles de órbita si está activada la rotación
+        // useFrame((state) => {
+        //     if (isRotating && orbitControlsRef.current) {
+        //     orbitControlsRef.current.update();
+        //     }
+        // });
+
+        const startRotation = () => {
+            setRotating(true);
+        };
+
+        const stopRotation = () => {
+            setRotating(false);
+        };
 
 
     return (
@@ -197,19 +218,43 @@ export const InteractiveMenu2 = () => {
 
 
         <div className={`mt-20 h-[65vh] md:mt-0 md:w-full md:h-full transition-opacity duration-500 opacity-0 ${!getCurrentMenuClicked && 'opacity-100'}`}>
-                <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 4], fov: 70 }}>
+                <Canvas
+                onClick={startRotation}
+                onPointerUp={stopRotation}
+                shadows
+                dpr={[1, 2]}
+                camera={{ position: [0, 0, 4], fov: 70 }}
+                >
+                   
+
+                    <OrbitControls
+                            ref={orbitControlsRef}
+                            enableZoom={false} // Deshabilitar el zoom
+                            enableRotate={true} // Habilitar la rotación
+                            enablePan={true} // Opcional: deshabilitar el pan (movimiento lateral)
+                            rotateSpeed={0.5} // Opcional: ajustar la velocidad de rotación (predeterminada es 1)
+                            zoomSpeed={0.5} // Opcional: ajustar la velocidad de zoom (predeterminada es 1)
+                            panSpeed={0.5} // Opcional: ajustar la velocidad de pan (predeterminada es 1)
+                    />
+
+
                     <PerspectiveCamera makeDefault fov={70} position={[0, 0, 5]} up={[0,0,0]} />
                     <ambientLight color="#ff0a65" intensity={0.5} />
                     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} shadow-mapSize={[512, 512]} castShadow />
-                    <PresentationControls
+                    {/* <PresentationControls
                         global
                         config={{ mass: 2, tension: 500 }}
                         snap={{ mass: 4, tension: 1500 }}
                         rotation={[0, 0.3, 0]}
                         polar={[-Math.PI / 4, Math.PI / 4]}
                         azimuth={[-Math.PI / 6, Math.PI / 6]}>
+                        
+                    </PresentationControls> */}
+
                         {!getCurrentMenuClicked && <CustomMenu rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.25, 0]} scale={1} setCurrentMenuClicked={setCurrentMenuClicked} setTimed={setTimed} />}
-                    </PresentationControls>
+                    
+
+                    
                     <ContactShadows position={[0, -1.4, 0]} opacity={0.35} scale={10} blur={2.5} far={4} />
                     <Environment preset="city" />
                 </Canvas>
@@ -237,7 +282,7 @@ export const InteractiveMenu2 = () => {
            
 
 
-{/* <div className={`absolute block w-full bg-menu z-20 transition-all duration-500 ease-in ${getCurrentMenuClicked ? 'bottom-0 h-full' : 'h-0'}  ${isTimed && 'delay-[unset] top-0 h-0'}`}></div> */}
+                    {/* <div className={`absolute block w-full bg-menu z-20 transition-all duration-500 ease-in ${getCurrentMenuClicked ? 'bottom-0 h-full' : 'h-0'}  ${isTimed && 'delay-[unset] top-0 h-0'}`}></div> */}
 
                 
                 <Image id="musicTrigger" alt="sound icon" src={isMusicOn ? soundON : soundOFF} className="absolute opacity-80 w-[40px] h-[40px] z-10 bottom-10 right-[calc(50vw-20px)] md:bottom-[40px] cursor-pointer" onClick={(e) => backGroundMusic(e)} />
