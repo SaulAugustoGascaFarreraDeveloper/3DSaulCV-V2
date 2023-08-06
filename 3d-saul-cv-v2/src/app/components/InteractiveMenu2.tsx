@@ -12,10 +12,10 @@ import Image from 'next/image'
 
 import soundON from './images/sound-on.png'
 import soundOFF from './images/sound-off.png'
-import hoverSound from '../sounds/hover.mp3'
-import clickSound from "../sounds/click.mp3"
-import transitionSound from '../sounds/transition.mp3'
-import bgMusic from '../sounds/music.mp3'
+//import hoverSound from "/sounds/hover.mp3"
+//import clickSound from "/sounds/click.mp3"
+//import transitionSound from '/sounds/transition.mp3'
+//bgMusic from '/sounds/music.mp3'
 
 
 
@@ -53,21 +53,23 @@ const SpaceShip = () => {
 }
 
 const hoverSoundEffect = () => {
-    const audioHover = new Audio(hoverSound)
+    const audioHover = new Audio("/sounds/hover.mp3")
     audioHover.volume = generalVolume - 0.2
     audioHover.play()
+
+    
 }
 
 
 const clickSoundEffect = () => {
-    const audioClicked = new Audio(clickSound)
+    const audioClicked = new Audio("/sounds/click.mp3")
     audioClicked.volume = generalVolume - 0.2
     audioClicked.play()
 }
 
 
 const transitionSoundEffect  = () => {
-    const audioTransition = new Audio(transitionSound)
+    const audioTransition = new Audio("/sounds/transition.mp3")
     audioTransition.volume = generalVolume
     audioTransition.play()
 }
@@ -162,7 +164,7 @@ export const InteractiveMenu2 = () => {
 
     const backGroundMusic = (e: any) => {
 
-        const audioBG = new Audio(bgMusic);
+        const audioBG = new Audio("/sounds/music.mp3");
 
 
         if (!isMusic) {
