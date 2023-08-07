@@ -18,7 +18,7 @@ export const Contact = (props: Props) => {
                 <div>
                     <p className="text-white pt-10">
                         If you are interested in collaborating or have any questions,
-                        please don't hesitate to reach out to me. You can contact me
+                        please dont hesitate to reach out to me. You can contact me
                         via email
                     </p>
                     <p className="text-white pt-4">Im always open to new opportunities and exciting projects.</p>
