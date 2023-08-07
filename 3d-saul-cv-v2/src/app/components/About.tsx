@@ -11,10 +11,10 @@ export const About = (props: Props) => {
       <div className="md:grid md:grid-cols-2 md:gap-4">
         <div>
           <p className='text-white pt-10'>
-            Hi there! I'm a passionate  web developer with a foundation in front-end and back-end technologies. I have a deep love for crafting elegant and user-friendly digital experiences that leave a lasting impact. With a knack for problem-solving and an eye for detail, I'm always excited to take on new challenges and bring innovative ideas to life.
+            Hi there! Im a passionate  web developer with a foundation in front-end and back-end technologies. I have a deep love for crafting elegant and user-friendly digital experiences that leave a lasting impact. With a knack for problem-solving and an eye for detail, Im always excited to take on new challenges and bring innovative ideas to life.
           </p>
           <p className='text-white pt-4'>
-            Over the years, I've honed my skills in JavaScript, HTML, and CSS to create responsive and interactive web applications. My experience extends to using popular frameworks like React and Next.js, allowing me to build modern and seamless user interfaces. I'm also well-versed in database management and have a solid understanding of SQL.
+            Over the years, I have honed my skills in JavaScript, HTML, and CSS to create responsive and interactive web applications. My experience extends to using popular frameworks like React and Next.js, allowing me to build modern and seamless user interfaces. Im also well-versed in database management and have a solid understanding of SQL.
           </p>
           
         </div>
